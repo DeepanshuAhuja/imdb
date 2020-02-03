@@ -1,1 +1,11 @@
 result.xml :- Reporting for all the testcases
+
+Actions Package :- It contains all the files that are helping to execute the tests
+
+Tests :- In this all the testcases are there 
+
+Target :- In this all the results are there in their respective files 
+    
+    1.) imdbratings.txt :- List of the top 250 movies with respect to IMDBratings.
+    2.) ranking.txt :- List of the top 250 movies with respect to rankings.
+    3.) year.txt :- List of the top 250 movies with respect to release date.
