@@ -10,8 +10,8 @@ from actions.helper import Helper
 @pytest.fixture(scope="session")
 def open_browser():
     """
-
-    :return:
+     Validate that site opens or not.
+    :return: driver
     """
     driver = webdriver.Chrome("/Users/deepanshu.ahuja/Documents/chromedriver")
     driver.get("https://www.imdb.com/chart/top/?ref_=nv_mv_250")
@@ -22,6 +22,16 @@ def open_browser():
 
 
 def test_ranking(open_browser,request):
+    """
+    Validate that top 250 movies are correctly sorted with their ranks
+    
+    Description :- Preparing the golden data
+    
+    parameters: 
+        open_browser = driver
+        request = For caching the golden_data
+        
+    """
     elements = open_browser.find_element_by_xpath("//tbody[@class='lister-list']")
 
     superlist = elements.text.split("\n")
@@ -40,6 +50,20 @@ def test_ranking(open_browser,request):
 
 
 def test_year(open_browser,request):
+    
+    
+    """
+    Validate that top 250 movies are correctly sorted with the release date.
+    
+    Description: In this we are validating that movies are sorted with the descending order and
+                 also comparing with the golden data that movie name and imdb rating would be correct.
+    
+    parameters:- 
+    
+    open_browser = driver
+    request = For caching the golden_data
+    
+    """
     dict1 = request.config.cache.get("golden_data", None)
     dropdown = Select(open_browser.find_element_by_id("lister-sort-by-options"))
 
@@ -71,6 +95,20 @@ def test_year(open_browser,request):
 
 
 def test_imdb_rating(open_browser,request):
+    
+    """
+    Validate that top 250 movies are correctly sorted with the imdb ratings.
+    
+    Description: In this we are validating that movies are sorted with the descending order and
+                 also comparing with the golden data that movie name and release date would be correct.
+    
+    parameters:- 
+    
+    open_browser = driver
+    request = For caching the golden_data
+    """
+    
+    
     dict1 = request.config.cache.get("golden_data", None)
     dropdown = Select(open_browser.find_element_by_id("lister-sort-by-options"))
 
